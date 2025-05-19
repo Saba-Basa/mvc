@@ -25,6 +25,7 @@ This project is a simple PHP-based CRUD application (Create, Read, Update, Delet
 │   ├── Model.php (Base Model class)
 │   └── Models
 │       └── Products.php (Product model)
+├── vendor/ (Ignored by Git)
 └── tests
     ├── ModelTest.php
     └── ProductTest.php
@@ -39,12 +40,17 @@ This project is a simple PHP-based CRUD application (Create, Read, Update, Delet
    cd <repository-name>
    ```
 
-2. **Database configuration**:
+2. **Install Dependencies**:
+
+   * Make sure Composer is installed on your system.
+   * Run `composer install` to install required packages.
+
+3. **Database configuration**:
 
    * Copy `config/database.example.php` to `config/database.php`.
    * Enter your MySQL database credentials in `config/database.php`.
 
-3. **Run Tests**:
+4. **Run Tests**:
 
    * PHPUnit is used for testing.
    * Run the tests with:
