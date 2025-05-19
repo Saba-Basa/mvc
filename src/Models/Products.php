@@ -12,4 +12,13 @@ class Products extends Model
         $t->execute([$data['name'], $data['price'], $data['description']]);
         return (int) $this->pdo->lastInsertId();
     }
+
+    public function findById(int $id): ?array
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM products WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+    }
+
+
 }

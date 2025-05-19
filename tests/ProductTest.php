@@ -3,16 +3,19 @@
 use PHPUnit\Framework\TestCase;
 require_once __DIR__ . '/../src/Models/Products.php';
 
-class ProductTest extends TestCase {
+class ProductTest extends TestCase
+{
     private static $model;
-    public static function setUpBeforeClass(): void {
+    public static function setUpBeforeClass(): void
+    {
         $config = require __DIR__ . '/../config/database.php';
-        $dsn = sprintf('mysql:host=%s;dbname=%s;charset=%s',
+        $dsn = sprintf(
+            'mysql:host=%s;dbname=%s;charset=%s',
             $config['host'],
             $config['dbname'],
             $config['charset']
         );
-        
+
         $pdo = new PDO($dsn, $config['username'], $config['password']);
         $pdo->exec('
             CREATE TABLE IF NOT EXISTS products (
@@ -26,7 +29,7 @@ class ProductTest extends TestCase {
         self::$model = new Products();
         $pdo->exec('TRUNCATE TABLE products');
     }
-    
+
     public function testCreate()
     {
         $data = [
@@ -34,12 +37,30 @@ class ProductTest extends TestCase {
             'price' => 19.99,
             'description' => 'Brown'
         ];
-        
+
         $id = self::$model->create($data);
         $this->assertIsInt($id);
         $this->assertGreaterThan(0, $id);
         $this->assertSame(19.99, $data['price']);
         $this->assertSame('Brown', $data['description']);
         $this->assertSame('Banana', $data['name']);
+    }
+
+    public function testFindById()
+    {
+        $data = [
+            'name' => 'Banana',
+            'price' => 19.99,
+            'description' => 'Brown'
+        ];
+        $id = self::$model->create($data);
+        echo "Created product with ID: $id\n";
+
+        $product = self::$model->findById($id);
+        echo "Found product: ";
+        print_r($product);
+        $this->assertEquals($data['name'], $product['name'], 'name should be equal');
+        echo "compared names: ";
+        print_r(['original' => $data['name'], 'found' => $product['name']]);
     }
 }
