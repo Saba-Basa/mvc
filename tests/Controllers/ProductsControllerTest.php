@@ -47,28 +47,20 @@ class ProductsControllerTest extends TestCase
         $this->assertStringContainsString('No products found', $output);
     }
     public function testIndexShowsProducts(): void
-{
-    // Insert test products into the database
-    self::$pdo->exec("
+    {
+        self::$pdo->exec("
         INSERT INTO products (name, price, description) 
         VALUES ('Apple', 2.50, 'red'),
                ('Orange', 1.99, 'orange')
     ");
-    
-    // Start output buffering to capture controller output
-    ob_start();
-    self::$controller->index();
-    $output = ob_get_clean();
-    
-    // Assert that product names appear in the output
-    $this->assertStringContainsString('Apple', $output);
-    $this->assertStringContainsString('Orange', $output);
-    
-    // Assert that prices appear in the output (formatted)
-    $this->assertStringContainsString('2.50', $output);
-    $this->assertStringContainsString('1.99', $output);
-    
-    // Assert that the "No products found" message does NOT appear
-    $this->assertStringNotContainsString('No products found', $output);
-}
+        ob_start();
+        self::$controller->index();
+        $output = ob_get_clean();
+
+        $this->assertStringContainsString('Apple', $output);
+        $this->assertStringContainsString('Orange', $output);
+        $this->assertStringContainsString('2.50', $output);
+        $this->assertStringContainsString('1.99', $output);
+        $this->assertStringNotContainsString('No products found', $output);
+    }
 }
