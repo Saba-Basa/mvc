@@ -62,5 +62,8 @@ class ProductTest extends TestCase
         $this->assertEquals($data['name'], $product['name'], 'name should be equal');
         echo "compared names: ";
         print_r(['original' => $data['name'], 'found' => $product['name']]);
+        $this->assertEquals($data['price'], $product['price']);
+        $this->assertEquals($data['description'], $product['description']);
+
     }
 }
