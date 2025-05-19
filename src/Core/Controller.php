@@ -6,7 +6,7 @@ abstract class Controller
     protected function view(string $template, array $data = []): void
     {
         extract($data);
-        require dirname(__DIR__, 2) . "/views/{$template}.php";
+        require __DIR__ . "/../../src/Views/{$template}.php";
     }
 
     protected function redirect(string $url): void
