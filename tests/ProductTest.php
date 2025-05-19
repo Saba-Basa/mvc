@@ -94,7 +94,8 @@ class ProductTest extends TestCase
         $this->assertCount(2, $products);
     }
 
-    public function testDelete(){
+    public function testDelete()
+    {
         $data = [
             [
                 'name' => 'Banana',
@@ -119,5 +120,37 @@ class ProductTest extends TestCase
         $appleID = self::$model->findAll()[0]['id'];
         self::$model->delete($appleID);
         $this->assertNull(self::$model->findAll());
+    }
+
+    public function testupdate()
+    {
+        $data = [
+            [
+                'name' => 'Banana',
+                'price' => 19.99,
+                'description' => 'Brown'
+            ],
+            [
+                'name' => 'Apple',
+                'price' => 14.99,
+                'description' => 'Red'
+            ]
+        ]
+        ;
+        foreach ($data as $item) {
+            self::$model->create($item);
+        }
+        $appleID = self::$model->findAll()[1]['id'];
+        // print_r($appleID);
+        $this->assertCount(2, $data);
+        $updatedApple = [
+            'id' => $appleID,
+            'name' => 'Apple',
+            'price' => 12.99,
+            'description' => 'Orange'
+        ];
+        self::$model->update($updatedApple);
+        // print_r(self::$model->findAll());
+        $this->assertSame('Orange', self::$model->findAll()[1]['description']);
     }
 }

@@ -18,8 +18,6 @@ class Model
         $this->pdo = new PDO($dsn, $config['username'], $config['password']);
     }
 
-
-
     public function getConnection(): PDO
     {
         return $this->pdo;
