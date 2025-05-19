@@ -19,8 +19,14 @@ class Products extends Model
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
-
     
+    public function findAll(): ?array{
+        $stmt = $this->pdo->query('SELECT * FROM products ORDER BY id');
+        return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: null;
+    }
+
+
+
 
 
 }
