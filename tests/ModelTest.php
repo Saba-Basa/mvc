@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Tests;
+
+use App\Model;
 use PHPUnit\Framework\TestCase;
-require_once __DIR__ . '/../src/Model.php';
+use PDO;
 
 class ModelTest extends TestCase{
     public function testConnectionReturnsPdo()

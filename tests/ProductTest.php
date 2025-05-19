@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Tests;
+
+use App\Models\Products;
 use PHPUnit\Framework\TestCase;
-require_once __DIR__ . '/../src/Models/Products.php';
+use PDO;
 
 class ProductTest extends TestCase
 {

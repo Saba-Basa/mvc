@@ -1,4 +1,6 @@
 <?php
+namespace App;
+use PDO;
 class Model
 {
     protected $pdo;

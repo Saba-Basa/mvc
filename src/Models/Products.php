@@ -1,5 +1,9 @@
 <?php
-require_once __DIR__ . "/../../src/Model.php";
+
+namespace App\Models;
+
+use App\Model;
+use PDO;
 
 class Products extends Model
 {
