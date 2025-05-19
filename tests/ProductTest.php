@@ -93,4 +93,31 @@ class ProductTest extends TestCase
         // print_r($products);
         $this->assertCount(2, $products);
     }
+
+    public function testDelete(){
+        $data = [
+            [
+                'name' => 'Banana',
+                'price' => 19.99,
+                'description' => 'Brown'
+            ],
+            [
+                'name' => 'Apple',
+                'price' => 14.99,
+                'description' => 'Red'
+            ]
+        ]
+        ;
+        foreach ($data as $item) {
+            self::$model->create($item);
+        }
+        $this->assertCount(2, $data);
+        $products = self::$model->findAll();
+        $bananaID = $products[0]['id'];
+        self::$model->delete($bananaID);
+        $this->assertCount(1, self::$model->findAll());
+        $appleID = self::$model->findAll()[0]['id'];
+        self::$model->delete($appleID);
+        $this->assertNull(self::$model->findAll());
+    }
 }
