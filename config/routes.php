@@ -1,14 +1,11 @@
 <?php
 return [
-  'GET' => [
-    '/products'           => ['ProductsController','index'],
-    '/products/create'    => ['ProductsController','create'],
-    '/products/{id}'      => ['ProductsController','show'],
-    '/products/{id}/edit' => ['ProductsController','edit'],
-  ],
-  'POST' => [
-    '/products'            => ['ProductsController','store'],
-    '/products/{id}'       => ['ProductsController','update'],
-    '/products/{id}/delete'=> ['ProductsController','destroy'],
-  ],
+    '/products'              => 'ProductsController@index',
+    '/products/create'       => 'ProductsController@create',
+    '/products/show'         => 'ProductsController@show',
+    '/products/edit'         => 'ProductsController@edit',
+    '/products/store'        => 'ProductsController@store',
+    '/products/update'       => 'ProductsController@update',
+    '/products/destroy'      => 'ProductsController@destroy',
+    '/'                      => 'ProductsController@index'
 ];
