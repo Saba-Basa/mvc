@@ -22,9 +22,23 @@ class ProductsController extends Controller
     }
     public function create()
     {
+        $this->view('products/create');
     }
     public function store()
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'name' => $_POST['name'] ?? '',
+                'price' => floatval($_POST['price'] ?? 0),
+                'description' => $_POST['description'] ?? ''
+            ];
+
+            $id = $this->model->create($data);
+
+            if ($id) {
+                $this->redirect('/products');
+            }
+        }
     }
     public function edit($id)
     {
