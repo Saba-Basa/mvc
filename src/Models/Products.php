@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Model;
+use App\Core\Model;
 use PDO;
 
 class Products extends Model
