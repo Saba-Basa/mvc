@@ -14,4 +14,5 @@ abstract class Controller
         header("Location: {$url}");
         exit;
     }
+    // protected function terminate():void{exit;}
 }
