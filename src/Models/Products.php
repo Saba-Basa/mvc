@@ -33,7 +33,7 @@ class Products extends Model
     public function delete(int $id): bool
     {
         $stmt = $this->pdo->prepare('DELETE FROM products WHERE id = :id');
-        $stmt->execute(['id' => $id]);
+        $stmt->execute([':id' => $id]);
         return $stmt->rowCount() > 0;
     }
 

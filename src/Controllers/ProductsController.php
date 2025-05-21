@@ -42,12 +42,22 @@ class ProductsController extends Controller
     }
     public function edit($id)
     {
+
     }
     public function update($id)
     {
     }
-    public function destroy($id)
+    public function destroy()
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method']) && $_POST['_method'] === 'DELETE') {
+            $id = $_POST['id'] ?? null;
+            if ($id) {
+                $success = $this->model->delete($id);
+                if ($success) {
+                    $this->redirect('/products');
+                }
+            }
+        }
     }
 
 }
