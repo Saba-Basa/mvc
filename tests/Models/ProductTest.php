@@ -12,7 +12,7 @@ class ProductTest extends TestCase
     private static $pdo;
     public static function setUpBeforeClass(): void
     {
-        $config = require __DIR__ . '/../config/database.php';
+        $config = require __DIR__ . '/../../config/database.php';
         $dsn = sprintf(
             'mysql:host=%s;dbname=%s;charset=%s',
             $config['host'],

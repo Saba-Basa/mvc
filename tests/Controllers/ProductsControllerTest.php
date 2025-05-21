@@ -63,8 +63,5 @@ class ProductsControllerTest extends TestCase
         $this->assertStringContainsString('1.99', $output);
         $this->assertStringNotContainsString('No products found', $output);
     }
-    public function testCreate():void{
-        
-    }
     
 }
