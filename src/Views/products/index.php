@@ -18,7 +18,7 @@
           <?php endif; ?>
           <div class="product-actions">
             <a href="/products/show?id=<?= $p['id'] ?>" class="btn-view">View</a>
-            <a href="/products/edit?id=<?= $p['id'] ?>" class="btn-edit">Edit</a>
+            <a href="/products/edit/<?= $p['id'] ?>" class="btn-edit">Edit</a>
             <form method="POST" action="/products/delete" class="delete-form">
               <input type="hidden" name="id" value="<?= $p['id'] ?>">
               <input type="hidden" name="_method" value="DELETE">

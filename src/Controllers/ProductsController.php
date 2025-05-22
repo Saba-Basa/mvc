@@ -40,14 +40,45 @@ class ProductsController extends Controller
             }
         }
     }
-    public function edit($id)
+    public function edit($id = null)
     {
+        if (!$id) {
+            $this->redirect('/products');
+            return;
+        }
 
+        $product = $this->model->findById($id);
+        if (!$product) {
+            $this->redirect('/products');
+            return;
+        }
+
+        $this->view('products/edit', ['product' => $product]);
     }
-    public function update($id)
+    public function update($id = null)
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Get ID from parameter or query string
+            $id = $id ?: ($_GET['id'] ?? null);
+
+            if (!$id) {
+                $this->redirect('/products');
+                return;
+            }
+
+            $data = [
+                'id' => $id,
+                'name' => $_POST['name'] ?? '',
+                'price' => floatval($_POST['price'] ?? 0),
+                'description' => $_POST['description'] ?? ''
+            ];
+            $success = $this->model->update($data);
+            if ($success) {
+                $this->redirect('/products');
+            }
+        }
     }
-    public function destroy()
+    public function delete()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method']) && $_POST['_method'] === 'DELETE') {
             $id = $_POST['id'] ?? null;

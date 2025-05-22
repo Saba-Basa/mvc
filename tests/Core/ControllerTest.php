@@ -36,7 +36,7 @@ class ControllerTest extends TestCase
     }
 
 
-    public function testRedirect2()
+    public function testRedirect()
     {
         $controller = new class extends Controller {
             protected function redirect(string $url): void
