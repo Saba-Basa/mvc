@@ -58,7 +58,6 @@ class ProductsController extends Controller
     public function update($id = null)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Get ID from parameter or query string
             $id = $id ?: ($_GET['id'] ?? null);
 
             if (!$id) {
